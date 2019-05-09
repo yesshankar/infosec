@@ -131,7 +131,7 @@ app.use(helmet.hsts({ maxAge: ninetyDaysInMilliseconds, force: true }));
 // even if they are not). If you have high security needs you can disable
 // DNS prefetching, at the cost of a performance penalty.
 
-// Use `helmet.dnsPrefetchControl()`
+app.use(helmet.dnsPrefetchControl());
 
 
 
