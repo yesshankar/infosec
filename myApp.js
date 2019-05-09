@@ -80,7 +80,7 @@ app.use(helmet.xssFilter());
 // This middleware sets the X-Content-Type-Options header to `nosniff`,
 // instructing the browser to not bypass the provided `Content-Type`.
 
-// Use `helmet.noSniff()`
+app.use(helmet.noSniff());
 
 
 
