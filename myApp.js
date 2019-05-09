@@ -29,7 +29,7 @@ const helmet = require('helmet');
 // You can also explicitly set the header to something else, to throw
 // people off. e.g. `helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' })`
 
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
+// app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 
 
 
@@ -45,7 +45,8 @@ app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 
 // We don't need our app to be framed, so you should use `helmet.frameguard()`
 // passing to it the configuration object `{action: 'deny'}`
-app.use(helmet.frameguard({ action: 'deny' }));
+
+// app.use(helmet.frameguard({ action: 'deny' }));
  
 
 /** 4) Mitigate the risk of XSS - `helmet.xssFilter()` */
@@ -67,7 +68,7 @@ app.use(helmet.frameguard({ action: 'deny' }));
 // it changes it, making the script not executable.
 // It still has limited support.
 
-app.use(helmet.xssFilter());
+// app.use(helmet.xssFilter());
 
 
 
@@ -80,7 +81,7 @@ app.use(helmet.xssFilter());
 // This middleware sets the X-Content-Type-Options header to `nosniff`,
 // instructing the browser to not bypass the provided `Content-Type`.
 
-app.use(helmet.noSniff());
+// app.use(helmet.noSniff());
 
 
 
@@ -93,7 +94,7 @@ app.use(helmet.noSniff());
 // This middleware sets the `X-Download-Options` header to `noopen`,
 // to prevent IE users from executing downloads in the *trusted* site's context.
 
-app.use(helmet.ieNoOpen());
+// app.use(helmet.ieNoOpen());
 
 
 
@@ -114,7 +115,7 @@ app.use(helmet.ieNoOpen());
 // policy we will intercept and restore the header, after inspecting it for testing.
 
 var ninetyDaysInMilliseconds = 90*24*60*60*1000;
-app.use(helmet.hsts({ maxAge: ninetyDaysInMilliseconds, force: true }));
+// app.use(helmet.hsts({ maxAge: ninetyDaysInMilliseconds, force: true }));
 
 //**Note**:
 // Configuring HTTPS on a custom website requires the acquisition of a domain,
@@ -131,7 +132,7 @@ app.use(helmet.hsts({ maxAge: ninetyDaysInMilliseconds, force: true }));
 // even if they are not). If you have high security needs you can disable
 // DNS prefetching, at the cost of a performance penalty.
 
-app.use(helmet.dnsPrefetchControl());
+// app.use(helmet.dnsPrefetchControl());
 
 
 
@@ -143,7 +144,7 @@ app.use(helmet.dnsPrefetchControl());
 // in development too. Caching has performance benefits, and you will lose them,
 // use this option only when there is a real need.
 
-app.use(helmet.noCache());
+// app.use(helmet.noCache());
 
 
 
@@ -175,12 +176,12 @@ app.use(helmet.noCache());
 // in the `"'self'"` keyword, the single quotes are part of the keyword itself, 
 // so it needs to be enclosed in **double quotes** to be working.
 
-app.use(helmet.contentSecurityPolicy({
+/* app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", 'trusted-cdn.com']
   }
-}));
+})); */
 
 /** TIP: */ 
 
@@ -189,19 +190,19 @@ app.use(helmet.contentSecurityPolicy({
 // but these can be enabled if necessary. You can also disable or 
 // set any other middleware individually, using a configuration object.
 
-// // - Example - 
-// app.use(helmet({
-//   frameguard: {              // configure
-//     action: 'deny'
-//   },
-//   contentSecurityPolicy: {   // enable and configure
-//    directives: {
-//      defaultSrc: ["'self'"],
-//      styleSrc: ['style.com'],
-//    }
-//   },
-//  dnsPrefetchControl: false   // disable
-// }))
+ 
+app.use(helmet({
+  hidePoweredBy: { setTo: 'PHP 4.2.0' },
+  frameguard: { action: 'deny' },
+  hsts: { maxAge: ninetyDaysInMilliseconds, force: true },
+  noCache: true,  // enable
+  contentSecurityPolicy: {   // enable and configure
+   directives: {
+     defaultSrc: ["'self'"],
+     scriptSrc: ["'self'", 'trusted-cdn.com']
+   }
+  }
+}))
 
 // We introduced each middleware separately, for teaching purpose, and for
 // ease of testing. Using the 'parent' `helmet()` middleware is easiest, and
