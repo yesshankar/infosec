@@ -67,7 +67,7 @@ app.use(helmet.frameguard({ action: 'deny' }));
 // it changes it, making the script not executable.
 // It still has limited support.
 
-// Use `helmet.xssFilter()`
+app.use(helmet.xssFilter());
 
 
 
