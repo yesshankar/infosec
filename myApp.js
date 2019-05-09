@@ -93,7 +93,7 @@ app.use(helmet.noSniff());
 // This middleware sets the `X-Download-Options` header to `noopen`,
 // to prevent IE users from executing downloads in the *trusted* site's context.
 
-// Use `helmet.ieNoOpen()`
+app.use(helmet.ieNoOpen());
 
 
 
