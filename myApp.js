@@ -143,7 +143,7 @@ app.use(helmet.dnsPrefetchControl());
 // in development too. Caching has performance benefits, and you will lose them,
 // use this option only when there is a real need.
 
-// Use helmet.noCache()
+app.use(helmet.noCache());
 
 
 
