@@ -1,0 +1,24 @@
+{
+  "name": "infosec",
+  "version": "1.0.0",
+  "description": "FCC information secrity challenges",
+  "main": "myApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node myApp.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesshankar/infosec.git"
+  },
+  "author": "Shankar Khatri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yesshankar/infosec/issues"
+  },
+  "homepage": "https://github.com/yesshankar/infosec#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "helmet": "^3.18.0"
+  }
+}
